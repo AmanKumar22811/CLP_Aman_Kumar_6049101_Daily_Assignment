@@ -10,9 +10,9 @@ public class EmployeeDAO {
     public EmployeeDAO() throws Exception {
         Class.forName("org.postgresql.Driver");
         con = DriverManager.getConnection(
-                "jdbc:postgresql://localhost:5432/employee",
+                "jdbc:postgresql://localhost:5432/empDB",
                 "postgres",
-                "shubham"
+                "capgemini"
         );
     }
 
