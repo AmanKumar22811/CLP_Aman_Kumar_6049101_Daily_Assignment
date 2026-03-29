@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<h1 style="color:steelblue;">Welcome to Movie App</h1>
+
+<a href="/addMovie">Add Movies</a><br>
+<a href="/searchMovie">Search Movie By Category</a>
+
+<br><br>
+
+<form th:action="@{/searchMovie}" method="post">
+
+    <h2 style="color:steelblue;">Search Movie</h2>
+
+    Select Genre:
+    <select name="genre">
+        <option value="">--Select--</option>
+        <option th:each="g : ${genres}" th:value="${g}" th:text="${g}"></option>
+    </select>
+
+	<br>
+
+	<span style="color:steelblue;" th:text="${error}"></span>
+		
+    <br><br>
+
+    <button type="submit">Search Movie</button>
+
+</form>
+
+<br><br>
+
+<table border="1" th:if="${movies != null}" style="color:steelblue;">
+    <tr>
+        <th>Movie Name</th>
+        <th>Rating</th>
+        <th>Genre</th>
+        <th>Action</th>
+    </tr>
+
+    <tr th:each="m : ${movies}">
+        <td th:text="${m.name}"></td>
+        <td th:text="${m.rating}"></td>
+        <td th:text="${m.genre}"></td>
+        <td>
+            <a th:href="@{/editMovie/{id}(id=${m.id})}">Edit</a> |
+            <a th:href="@{/deleteMovie/{id}(id=${m.id})}"
+               onclick="return confirm('Are you sure?')">Delete</a>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

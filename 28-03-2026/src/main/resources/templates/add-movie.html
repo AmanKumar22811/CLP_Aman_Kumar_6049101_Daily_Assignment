@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<h1 style="color:steelblue;">Welcome to Movie App</h1>
+
+<a href="/addMovie">Add Movies</a><br>
+<a href="/searchMovie">Search Movie By Category</a>
+
+<br><br>
+
+<form th:action="@{/saveMovie}" th:object="${movie}" method="post">
+
+    <!-- Movie Name -->
+    Movie Name:
+    <input type="text" th:field="*{name}" />
+    <br>
+    <span style="color:steelblue;" th:errors="*{name}"></span>
+
+    <br><br>
+
+    <!-- Rating -->
+    Give Rating:
+    <input type="text" th:field="*{rating}" />
+    <br>
+    <span style="color:steelblue;" th:errors="*{rating}"></span>
+
+    <br><br>
+
+    <!-- Genre -->
+    Select Genre:
+    <select th:field="*{genre}">
+        <option value="">--Select--</option>
+        <option th:each="g : ${genres}" th:value="${g}" th:text="${g}"></option>
+    </select>
+    <br>
+    <span style="color:steelblue;" th:errors="*{genre}"></span>
+
+    <br><br>
+
+    <button type="submit">Add Movie</button>
+
+</form>
+
+</body>
+</html>
